@@ -13,6 +13,10 @@
     </head>
     <body class="container ">
       <h1>Bee Management</h1>
+      <div class="who-is-login">
+        <span class="loggedIn" id="currentUser">Welcome! Please Sign In or Sign Up.</span>
+      </div>
+      <br>
       <form id="sign-up">
       <fieldset>
         <div class="input-group">
@@ -57,5 +61,29 @@
       </fieldset>
     </form>
     <br>
+    <div class="show-hive-button">
+      <input type="submit" id="show-hives-button" name="hive button" value="Get Hive Table">
+    </div>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">
+            <p id=infoModalText>Replace this text</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
    </body>
 </html>

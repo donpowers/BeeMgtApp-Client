@@ -42,12 +42,22 @@ const onChangePassword = function (event) {
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
 }
-
+const onShowHives = function (event) {
+  // console.log('onReplayCreateGame called')
+  event.preventDefault()
+  api.getHives()
+    .then(ui.getHivesSuccess)
+    .catch(ui.getHivesFailure)
+}
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#sign-out').on('submit', onSignOut)
   $('#change-password').on('submit', onChangePassword)
+  $('#show-hives-button').on('click', onShowHives)
+  $('#change-password').hide()
+  $('#sign-out').hide()
+  $('#show-hives-button').hide()
 }
 module.exports = {
   addHandlers
