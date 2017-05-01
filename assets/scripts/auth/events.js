@@ -59,6 +59,11 @@ const createHiveBackend = function (event) {
   ui.checkForHiveName()
   event.preventDefault()
 }
+const updateHiveBackend = function (event) {
+  event.preventDefault()
+  ui.checkForHiveUpdates()
+  console.log('updateHiveBackend called')
+}
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -70,6 +75,7 @@ const addHandlers = () => {
   // $('#add-hives-button').on('submit', onCreateHive)
   $('#add-hives-button').on('click', onCreateHive)
   $('#create_hive').on('click', createHiveBackend)
+  $('#update_hive').on('click', updateHiveBackend)
 }
 module.exports = {
   addHandlers

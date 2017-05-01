@@ -28,12 +28,6 @@ const signInSuccess = (data) => {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#sign-out').show()
-  $('#add-hives-button').submit(function (event) {
-    alert('Handler for .submit() called.')
-    event.preventDefault()
-  })
-  // $('#add-hives-button').on('click', events.onCreateHive)
-  // $('#add-hives-button').on('submit', events.onCreateHive)
   $('#add-hives-button').show()
 }
 const onShowUserHives = function () {
@@ -49,6 +43,7 @@ const getHivesSuccess = (data) => {
   const showHivesTemplateHtml = showHivesTemplate({ hives: data.hives })
   $('.userHives').append(showHivesTemplateHtml)
   addDeleteEventHandlers(data)
+  addUpdateEventHandlers(data)
 }
 const addDeleteEventHandlers = function (data) {
   data.hives.forEach(function (item) {
@@ -73,7 +68,20 @@ const deleteHiveFailure = () => {
   // Clear the form data entered
   console.log('deleteHiveFailure failure')
 }
-
+const addUpdateEventHandlers = function (data) {
+  data.hives.forEach(function (item) {
+    $('#button-update-' + item.id).on('click', updateHive)
+  })
+}
+const updateHive = function (event) {
+  event.preventDefault()
+  console.log('updateHive: ', event)
+  console.log('target_id: ', event.target.id)
+  const data = event.target.id.split('-')
+  console.log('id: ', data[2])
+  store.hive_to_update = data[2]
+  $('#updateHiveModal').modal('show')
+}
 const getHivesFailure = () => {
   // Clear the form data entered
   console.log('getHivesFailure failure')
@@ -93,6 +101,7 @@ const signOutSuccess = () => {
   $('#sign-in').show()
   $('#sign-out').hide()
   $('#userHives').empty()
+  $('#add-hives-button').hide()
   showUserLoggedlMessage('Welcome! Please Sign In or Sign Up.')
 }
 const signOutFailure = (error) => {
@@ -136,12 +145,37 @@ const checkForHiveName = function () {
     createHive(hiveCreate)
   }
 }
+const checkForHiveUpdates = function () {
+  console.log('checkForHiveUpdates called')
+  const name = $('#new-name').val()
+  const queen = $('#new-queen').val()
+  const location = $('#new-location').val()
+  if (!name && !queen && !location) {
+    $('#noUpdatesFound').text('No updates found')
+  } else {
+    $('#noUpdatesFound').text('')
+    hiveCreate.hive.hive_name = name
+    hiveCreate.hive.queen_type = queen
+    hiveCreate.hive.hive_location = location
+    hiveCreate.hive.honey_supers = 3
+    hiveCreate.hive.brood_supers = 2
+    console.log('checkForHiveUpdates changes: ', hiveCreate.hive)
+    updateUserHive(hiveCreate)
+  }
+}
 const createHive = function (data) {
   console.log('createHive is:', data)
   event.preventDefault()
   api.onCreateHive(data)
     .then(createHiveSuccess)
     .catch(createHiveFailure)
+}
+const updateUserHive = function (data) {
+  console.log('updateHive is:', data)
+  event.preventDefault()
+  api.updateUserHive(data, store.hive_to_update)
+    .then(updateUserHiveSuccess)
+    .catch(updateUserHiveFailure)
 }
 const createHiveSuccess = () => {
   console.log('createHiveSuccess')
@@ -150,6 +184,15 @@ const createHiveSuccess = () => {
 }
 const createHiveFailure = (error) => {
   console.log('createHiveFailure')
+  console.error(error)
+}
+const updateUserHiveSuccess = () => {
+  console.log('updateHiveSuccess')
+  // update current list of hives
+  onShowUserHives()
+}
+const updateUserHiveFailure = (error) => {
+  console.log('updateHiveFailure')
   console.error(error)
 }
 module.exports = {
@@ -163,5 +206,6 @@ module.exports = {
   changePasswordSuccess,
   getHivesSuccess,
   getHivesFailure,
-  checkForHiveName
+  checkForHiveName,
+  checkForHiveUpdates
 }

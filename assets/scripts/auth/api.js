@@ -69,6 +69,17 @@ const deleteUserHive = (id) => {
       Authorization: 'Token token=' + store.user.token}
   })
 }
+
+const updateUserHive = (data, id) => {
+  console.log('updateUserHive Called:', data)
+  return $.ajax({
+    url: config.apiOrigin + '/hives/' + id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token},
+    data
+  })
+}
 module.exports = {
   signUp,
   signIn,
@@ -76,5 +87,6 @@ module.exports = {
   changePassword,
   getUserHives,
   onCreateHive,
-  deleteUserHive
+  deleteUserHive,
+  updateUserHive
 }
