@@ -1,6 +1,7 @@
 'use strict'
-//  const api = require('./api')
+const api = require('./api')
 const store = require('../store')
+const showHivesTemplate = require('../templates/hive-listing.handlebars')
 
 const signUpSuccess = (data) => {
   console.log('signUpSuccess calledd: ', data)
@@ -22,11 +23,27 @@ const signInSuccess = (data) => {
   store.user = data.user
   console.log('Token: ', store.user.token)
   showUserLoggedlMessage('Welcome ' + store.user.email)
+  onShowUserHives()
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#sign-out').show()
 }
-
+const onShowUserHives = function () {
+  console.log('onShowUserHives called')
+  api.getUserHives()
+    .then(getHivesSuccess)
+    .catch(getHivesFailure)
+}
+const getHivesSuccess = (data) => {
+  console.log('getHivesSuccess success', data)
+  store.hives = data.hives
+  const showHivesTemplateHtml = showHivesTemplate({ hives: data.hives })
+  $('.userHives').append(showHivesTemplateHtml)
+}
+const getHivesFailure = () => {
+  // Clear the form data entered
+  console.log('getHivesFailure failure')
+}
 const signInFailure = (error) => {
   console.log('Sign In Failure')
   showModalMessage('You were unable to sign-in. Please Try Again or Sign Up.')
@@ -41,6 +58,7 @@ const signOutSuccess = () => {
   $('#sign-up').show()
   $('#sign-in').show()
   $('#sign-out').hide()
+  $('#userHives').empty()
   showUserLoggedlMessage('Welcome! Please Sign In or Sign Up.')
 }
 const signOutFailure = (error) => {
@@ -57,14 +75,6 @@ const changePasswordFailure = (error) => {
   showModalMessage('You were unable to change your password. Please Try Again.')
   $('#change-password').trigger('reset')
   console.error(error)
-}
-const getHivesSuccess = (data) => {
-  // Clear the form data entered
-  console.log('getHivesSuccess success', data)
-}
-const getHivesFailure = () => {
-  // Clear the form data entered
-  console.log('getHivesFailure failure')
 }
 const showModalMessage = function (message) {
   $('#infoModalText').text(message)
