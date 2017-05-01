@@ -40,8 +40,8 @@ const signOut = (data) => {
   })
 }
 
-const getHives = (data) => {
-  // console.log('getUserGames Called')
+const getUserHives = () => {
+  // console.log('getUserHives Called')
   return $.ajax({
     url: config.apiOrigin + '/my-hives',
     method: 'GET',
@@ -55,5 +55,5 @@ module.exports = {
   signIn,
   signOut,
   changePassword,
-  getHives
+  getUserHives
 }
