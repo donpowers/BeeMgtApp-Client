@@ -60,11 +60,21 @@ const onCreateHive = (data) => {
     data
   })
 }
+const deleteUserHive = (id) => {
+  console.log('deleteUserHive Called:' + id)
+  return $.ajax({
+    url: config.apiOrigin + '/hives/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token}
+  })
+}
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
   getUserHives,
-  onCreateHive
+  onCreateHive,
+  deleteUserHive
 }

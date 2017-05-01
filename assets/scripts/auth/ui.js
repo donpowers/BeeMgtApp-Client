@@ -45,9 +45,35 @@ const onShowUserHives = function () {
 const getHivesSuccess = (data) => {
   console.log('getHivesSuccess success', data)
   store.hives = data.hives
+  $('#userHives').empty()
   const showHivesTemplateHtml = showHivesTemplate({ hives: data.hives })
   $('.userHives').append(showHivesTemplateHtml)
+  addDeleteEventHandlers(data)
 }
+const addDeleteEventHandlers = function (data) {
+  data.hives.forEach(function (item) {
+    $('#button-delete-' + item.id).on('click', deleteHive)
+  })
+}
+const deleteHive = function (event) {
+  console.log('deleteHive: ', event)
+  console.log('target_id: ', event.target.id)
+  const data = event.target.id.split('-')
+  console.log('id: ', data[2])
+  api.deleteUserHive(data[2])
+      .then(deleteHiveSuccess)
+      .catch(deleteHiveFailure)
+}
+const deleteHiveSuccess = () => {
+  // Clear the form data entered
+  console.log('deleteHiveSuccess success')
+  onShowUserHives()
+}
+const deleteHiveFailure = () => {
+  // Clear the form data entered
+  console.log('deleteHiveFailure failure')
+}
+
 const getHivesFailure = () => {
   // Clear the form data entered
   console.log('getHivesFailure failure')
@@ -119,6 +145,8 @@ const createHive = function (data) {
 }
 const createHiveSuccess = () => {
   console.log('createHiveSuccess')
+  // update current list of hives
+  onShowUserHives()
 }
 const createHiveFailure = (error) => {
   console.log('createHiveFailure')
