@@ -2,6 +2,7 @@
 const api = require('./api')
 const store = require('../store')
 const showHivesTemplate = require('../templates/hive-listing.handlebars')
+const hiveCreate = require('../hiveCreate')
 
 const signUpSuccess = (data) => {
   console.log('signUpSuccess calledd: ', data)
@@ -27,6 +28,13 @@ const signInSuccess = (data) => {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#sign-out').show()
+  $('#add-hives-button').submit(function (event) {
+    alert('Handler for .submit() called.')
+    event.preventDefault()
+  })
+  // $('#add-hives-button').on('click', events.onCreateHive)
+  // $('#add-hives-button').on('submit', events.onCreateHive)
+  $('#add-hives-button').show()
 }
 const onShowUserHives = function () {
   console.log('onShowUserHives called')
@@ -83,6 +91,39 @@ const showModalMessage = function (message) {
 const showUserLoggedlMessage = function (message) {
   $('#currentUser').text(message)
 }
+
+const checkForHiveName = function () {
+  console.log('checkForHiveName called')
+  const name = $('#name').val()
+  const queen = $('#queen').val()
+  const location = $('#hive-location').val()
+  if (!name) {
+    $('#hiveNameRequired').text('Hive Name is required, please supply a name')
+  } else {
+    $('#hiveNameRequired').text('')
+    console.log('checkForHiveName: ' + name)
+    hiveCreate.hive.hive_name = name
+    hiveCreate.hive.queen_type = queen
+    hiveCreate.hive.hive_location = location
+    hiveCreate.hive.honey_supers = 3
+    hiveCreate.hive.brood_supers = 2
+    createHive(hiveCreate)
+  }
+}
+const createHive = function (data) {
+  console.log('createHive is:', data)
+  event.preventDefault()
+  api.onCreateHive(data)
+    .then(createHiveSuccess)
+    .catch(createHiveFailure)
+}
+const createHiveSuccess = () => {
+  console.log('createHiveSuccess')
+}
+const createHiveFailure = (error) => {
+  console.log('createHiveFailure')
+  console.error(error)
+}
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -93,5 +134,6 @@ module.exports = {
   changePasswordFailure,
   changePasswordSuccess,
   getHivesSuccess,
-  getHivesFailure
+  getHivesFailure,
+  checkForHiveName
 }
