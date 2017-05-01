@@ -42,22 +42,34 @@ const onChangePassword = function (event) {
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
 }
-const onShowHives = function (event) {
-  // console.log('onReplayCreateGame called')
+// const onShowHives = function (event) {
+//   // console.log('onShowHives called')
+//   event.preventDefault()
+//   api.getHives()
+//     .then(ui.getHivesSuccess)
+//     .catch(ui.getHivesFailure)
+// }
+const onCreateHive = function (event) {
+  console.log('onCreateHive called')
   event.preventDefault()
-  api.getHives()
-    .then(ui.getHivesSuccess)
-    .catch(ui.getHivesFailure)
+  $('#createHiveModal').modal('show')
+}
+const createHiveBackend = function (event) {
+  console.log('createHiveBackend called')
+  ui.checkForHiveName()
+  event.preventDefault()
 }
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#sign-out').on('submit', onSignOut)
   $('#change-password').on('submit', onChangePassword)
-  $('#show-hives-button').on('click', onShowHives)
   $('#change-password').hide()
   $('#sign-out').hide()
-  $('#show-hives-button').hide()
+  $('#add-hives-button').hide()
+  // $('#add-hives-button').on('submit', onCreateHive)
+  $('#add-hives-button').on('click', onCreateHive)
+  $('#create_hive').on('click', createHiveBackend)
 }
 module.exports = {
   addHandlers

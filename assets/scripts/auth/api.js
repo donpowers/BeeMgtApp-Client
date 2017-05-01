@@ -50,10 +50,21 @@ const getUserHives = () => {
   })
 }
 
+const onCreateHive = (data) => {
+  console.log('onCreateHive Called')
+  return $.ajax({
+    url: config.apiOrigin + '/hives',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token},
+    data
+  })
+}
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
-  getUserHives
+  getUserHives,
+  onCreateHive
 }

@@ -13,10 +13,19 @@
     </head>
     <body class="container ">
       <h1>Honey Bee Colony Management</h1>
+
       <div class="who-is-login">
         <span class="loggedIn" id="currentUser">Welcome! Please Sign In or Sign Up.</span>
       </div>
       <br>
+
+      <form id="sign-out">
+        <fieldset>
+        <input type="submit" name="submit" value="Sign Off">
+        </fieldset>
+      </form>
+      <br>
+
       <div id="userHives" class="userHives"> </div>
       <br>
       <form id="sign-up">
@@ -33,6 +42,7 @@
       </fieldset>
       <br>
       </form>
+
       <form id="sign-in">
       <fieldset>
       <div class="input-group">
@@ -44,33 +54,29 @@
         <input type="submit" name="submit" value="Sign In">
       </fieldset>
       <br>
-    </form>
-    <form id="change-password">
-    <fieldset>
-    <div class="input-group">
-      <span class="input-group-addon"  id="old-password"></span>
-      <input type="password" name="passwords[old]" class="form-control" placeholder="Old Password" aria-describedby="basic-addon1">
-      <span class="input-group-addon" id="passWord"></span>
-      <input type="password" name="passwords[new]" class="form-control" placeholder="New Password" aria-describedby="basic-addon1">
-    </div>
-      <input type="submit" name="submit" value="Change Password">
-    </fieldset>
-    <br>
-  </form>
-    <form id="sign-out">
-      <fieldset>
-      <input type="submit" name="submit" value="Sign Off">
-      </fieldset>
-    </form>
-    <br>
-    <div class="show-hive-button">
-      <input type="submit" id="show-hives-button" name="hive button" value="Get Hive Table">
-    </div>
+      </form>
+
+      <form id="change-password">
+        <fieldset>
+          <div class="input-group">
+            <span class="input-group-addon"  id="old-password"></span>
+            <input type="password" name="passwords[old]" class="form-control" placeholder="Old Password" aria-describedby="basic-addon1">
+            <span class="input-group-addon" id="passWord"></span>
+            <input type="password" name="passwords[new]" class="form-control" placeholder="New Password" aria-describedby="basic-addon1">
+          </div>
+          <input type="submit" name="submit" value="Change Password">
+        </fieldset>
+        <br>
+      </form>
+      <br>
+
+      <div class="add-hive-button">
+        <input type="submit" id="add-hives-button" name="hive button" value="Add Hive">
+      </div>
 
     <!-- Modal -->
     <div id="infoModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -86,6 +92,40 @@
         </div>
       </div>
     </div>
+    <!-- Create Hive Modal -->
+    <div id="createHiveModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="Submi" data-dismiss="modal">&times;</button>
+            <h4 class="Create Hive"></h4>
+          </div>
+          <div class="modal-body">
+            <p id=infoModalText>Please Supply The Requested Data(Hive Name Required)</p>
+            <p id=hiveNameRequired></p>
+            <form id="create-hive">
+            <fieldset>
+              <div class="input-group">
+                <span class="input-group-addon"  id="hive-name"></span>
+                <input type="text" name="hivedata[name]" id="name" class="form-control" placeholder="Hive Name" aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="type-of-queen"></span>
+                <input type="text" name="hivedata[queen]" id="queen" class="form-control" placeholder="Queen Type" aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="hive-location"></span>
+                <input type="text" name="hivedata[location]" id="location" class="form-control" placeholder="Hive Location" aria-describedby="basic-addon1">
+              </div>
+                <br>
+                <button type="button" class="btn btn-primary" id= "create_hive">Create Hive</button>
+            </fieldset>
+            <br>
+            </form>
 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
    </body>
 </html>
