@@ -52,6 +52,7 @@ const onChangePassword = function (event) {
 const onCreateHive = function (event) {
   console.log('onCreateHive called')
   event.preventDefault()
+  ui.clearCreateHiveModalParameters()
   $('#createHiveModal').modal('show')
 }
 const createHiveBackend = function (event) {
@@ -71,7 +72,7 @@ const addHandlers = () => {
   $('#change-password').on('submit', onChangePassword)
   $('#change-password').hide()
   $('#sign-out').hide()
-  $('#add-hives-button').hide()
+  $('.add-hive-button').hide()
   // $('#add-hives-button').on('submit', onCreateHive)
   $('#add-hives-button').on('click', onCreateHive)
   $('#create_hive').on('click', createHiveBackend)

@@ -1,15 +1,14 @@
 {{#each hives}}
 
-<li data-id="{{this.id}}" data-name="{{this.name}}" class='hive{{this.id}} list-unstyled'>
-  <ul> <small>Hive Name: {{this.hive_name}}</small></ul>
-  <ul> <small>Queen Type: {{this.queen_type}}</small></ul>
-  <ul> <small>Brood Supers: {{this.brood_supers}}</small></ul>
-  <ul> <small>Hive Location: {{this.hive_location}}</small></ul>
-  <ul> <small>Honey Supers: {{this.honey_supers}}</small></ul>
+<ul data-id="{{this.id}}" data-name="{{this.name}}" class='hive{{this.id}} list-unstyled'>
+  <li>Hive Name: {{this.hive_name}}</li>
+  <li>Queen Type: {{this.queen_type}}</li>
+  <li>Brood Supers: {{this.brood_supers}}</li>
+  <li>Honey Supers: {{this.honey_supers}}</li>
+  <li>Hive Location: {{this.hive_location}}</li>
   <div>
     <p><button class="delete_hive" name="button" id="button-delete-{{this.id}}">Delete</button>
     <button class="hive" name="button" id="button-update-{{this.id}}">Update</button></p>
-
   </div>
- </li>
+</ul>
 {{/each}}
