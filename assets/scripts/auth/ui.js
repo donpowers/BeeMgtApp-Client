@@ -108,6 +108,7 @@ const signOutSuccess = () => {
   $('#sign-out').hide()
   $('#userHives').empty()
   $('.add-hive-button').hide()
+  $('#sign-up').trigger('reset')
   showUserLoggedlMessage('Welcome! Please Sign In or Sign Up.')
 }
 const signOutFailure = (error) => {
