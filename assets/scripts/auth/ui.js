@@ -108,7 +108,7 @@ const signOutSuccess = () => {
   $('#sign-out').hide()
   $('#userHives').empty()
   $('.add-hive-button').hide()
-  $('#sign-up').trigger('reset')
+  $('#sign-up ').trigger('reset')
   showUserLoggedlMessage('Welcome! Please Sign In or Sign Up.')
 }
 const signOutFailure = (error) => {
@@ -168,8 +168,8 @@ const checkForHiveUpdates = function () {
     hiveCreate.hive.hive_name = name
     hiveCreate.hive.queen_type = queen
     hiveCreate.hive.hive_location = location
-    hiveCreate.hive.honey_supers = brood
-    hiveCreate.hive.brood_supers = honey
+    hiveCreate.hive.honey_supers = honey
+    hiveCreate.hive.brood_supers = brood
     console.log('checkForHiveUpdates changes: ', hiveCreate.hive)
     updateUserHive(hiveCreate)
   }
