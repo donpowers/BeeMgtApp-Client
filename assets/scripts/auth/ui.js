@@ -155,9 +155,11 @@ const checkForHiveName = function () {
 }
 const checkForHiveUpdates = function () {
   console.log('checkForHiveUpdates called')
-  const name = $('#new-name').val()
-  const queen = $('#new-queen').val()
-  const location = $('#new-location').val()
+  const name = $('#new_name').val()
+  const queen = $('#new_queen').val()
+  const location = $('#new_location').val()
+  const brood = $('#new_brood_supers').val()
+  const honey = $('#new_honey_supers').val()
   if (!name && !queen && !location) {
     $('#noUpdatesFound').text('No updates found')
   } else {
@@ -165,8 +167,8 @@ const checkForHiveUpdates = function () {
     hiveCreate.hive.hive_name = name
     hiveCreate.hive.queen_type = queen
     hiveCreate.hive.hive_location = location
-    hiveCreate.hive.honey_supers = 3
-    hiveCreate.hive.brood_supers = 2
+    hiveCreate.hive.honey_supers = brood
+    hiveCreate.hive.brood_supers = honey
     console.log('checkForHiveUpdates changes: ', hiveCreate.hive)
     updateUserHive(hiveCreate)
   }
@@ -209,9 +211,11 @@ const populateUpdateHiveModal = function (id) {
   const hive = findHiveByID(id)
   console.log('Current Hive to Update: ' + id, hive)
   if (hive) {
-    $('#new-name').val(hive.hive_name)
-    $('#new-queen').val(hive.queen_type)
-    $('#new-location').val(hive.hive_location)
+    $('#new_name').val(hive.hive_name)
+    $('#new_queen').val(hive.queen_type)
+    $('#new_location').val(hive.hive_location)
+    $('#new_brood_supers').val(hive.brood_supers)
+    $('#new_honey_supers').val(hive.honey_supers)
   }
 }
 const findHiveByID = function (idMatch) {
