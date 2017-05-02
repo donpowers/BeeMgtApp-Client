@@ -28,7 +28,7 @@ const signInSuccess = (data) => {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#sign-out').show()
-  $('#add-hives-button').show()
+  $('.add-hive-button').show()
 }
 const onShowUserHives = function () {
   console.log('onShowUserHives called')
@@ -40,6 +40,10 @@ const getHivesSuccess = (data) => {
   console.log('getHivesSuccess success', data)
   store.hives = data.hives
   $('#userHives').empty()
+  // Sort hives by ID so they are always in the same order
+  data.hives.sort(function (a, b) {
+    return a.id - b.id
+  })
   const showHivesTemplateHtml = showHivesTemplate({ hives: data.hives })
   $('.userHives').append(showHivesTemplateHtml)
   addDeleteEventHandlers(data)
@@ -78,8 +82,10 @@ const updateHive = function (event) {
   console.log('updateHive: ', event)
   console.log('target_id: ', event.target.id)
   const data = event.target.id.split('-')
-  console.log('id: ', data[2])
   store.hive_to_update = data[2]
+  // Prepopulate Modal with current values
+
+  populateUpdateHiveModal(data[2])
   $('#updateHiveModal').modal('show')
 }
 const getHivesFailure = () => {
@@ -101,7 +107,7 @@ const signOutSuccess = () => {
   $('#sign-in').show()
   $('#sign-out').hide()
   $('#userHives').empty()
-  $('#add-hives-button').hide()
+  $('.add-hive-button').hide()
   showUserLoggedlMessage('Welcome! Please Sign In or Sign Up.')
 }
 const signOutFailure = (error) => {
@@ -131,7 +137,9 @@ const checkForHiveName = function () {
   console.log('checkForHiveName called')
   const name = $('#name').val()
   const queen = $('#queen').val()
-  const location = $('#hive-location').val()
+  const location = $('#location').val()
+  const brood = $('#brood_supers').val()
+  const honey = $('#honey_supers').val()
   if (!name) {
     $('#hiveNameRequired').text('Hive Name is required, please supply a name')
   } else {
@@ -140,8 +148,8 @@ const checkForHiveName = function () {
     hiveCreate.hive.hive_name = name
     hiveCreate.hive.queen_type = queen
     hiveCreate.hive.hive_location = location
-    hiveCreate.hive.honey_supers = 3
-    hiveCreate.hive.brood_supers = 2
+    hiveCreate.hive.honey_supers = honey
+    hiveCreate.hive.brood_supers = brood
     createHive(hiveCreate)
   }
 }
@@ -181,6 +189,8 @@ const createHiveSuccess = () => {
   console.log('createHiveSuccess')
   // update current list of hives
   onShowUserHives()
+  // let user know hive was created
+  $('#hiveNameRequired').text('New Hive Created!')
 }
 const createHiveFailure = (error) => {
   console.log('createHiveFailure')
@@ -195,6 +205,34 @@ const updateUserHiveFailure = (error) => {
   console.log('updateHiveFailure')
   console.error(error)
 }
+const populateUpdateHiveModal = function (id) {
+  const hive = findHiveByID(id)
+  console.log('Current Hive to Update: ' + id, hive)
+  if (hive) {
+    $('#new-name').val(hive.hive_name)
+    $('#new-queen').val(hive.queen_type)
+    $('#new-location').val(hive.hive_location)
+  }
+}
+const findHiveByID = function (idMatch) {
+  let result
+  let i
+  for (i in store.hives) {
+    const id = store.hives[i].id
+    if (id == idMatch) {
+      return store.hives[i]
+    }
+  }
+  result
+}
+const clearCreateHiveModalParameters = function () {
+  $('#hiveNameRequired').text('')
+  $('#name').val('')
+  $('#queen').val('')
+  $('#location').val('')
+  $('#brood_supers').val('')
+  $('#honey_supers').val('')
+}
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -207,5 +245,6 @@ module.exports = {
   getHivesSuccess,
   getHivesFailure,
   checkForHiveName,
-  checkForHiveUpdates
+  checkForHiveUpdates,
+  clearCreateHiveModalParameters
 }

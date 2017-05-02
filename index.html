@@ -19,11 +19,16 @@
       </div>
       <br>
 
+      <div class="add-hive-button">
+        <input type="submit" id="add-hives-button" name="hive button" value="Create New Hive">
+      </div>
+
       <form id="sign-out">
         <fieldset>
         <input type="submit" name="submit" value="Sign Off">
         </fieldset>
       </form>
+
       <br>
 
       <div id="userHives" class="userHives"> </div>
@@ -71,7 +76,7 @@
       <br>
 
       <div class="add-hive-button">
-        <input type="submit" id="add-hives-button" name="hive button" value="Add Hive">
+        <input type="submit" id="add-hives-button" name="hive button" value="Create New Hive">
       </div>
 
     <!-- Modal -->
@@ -98,7 +103,7 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="Submi" data-dismiss="modal">&times;</button>
+            <button type="button" class="Submit" data-dismiss="modal">&times;</button>
             <h4 class="Create Hive"></h4>
           </div>
           <div class="modal-body">
@@ -107,12 +112,26 @@
             <form id="create-hive">
             <fieldset>
               <div class="input-group">
+                <div class="col-sm-10">
                 <span class="input-group-addon"  id="hive-name"></span>
                 <input type="text" name="hivedata[name]" id="name" class="form-control" placeholder="Hive Name" aria-describedby="basic-addon1">
+              </div>
+              <div class="col-sm-10">
                 <span class="input-group-addon" id="type-of-queen"></span>
                 <input type="text" name="hivedata[queen]" id="queen" class="form-control" placeholder="Queen Type" aria-describedby="basic-addon1">
+              </div>
+                <div class="col-sm-10">
                 <span class="input-group-addon" id="hive-location"></span>
                 <input type="text" name="hivedata[location]" id="location" class="form-control" placeholder="Hive Location" aria-describedby="basic-addon1">
+              </div>
+                <div class="col-sm-10">
+                <span class="input-group-addon" id="hive-brood-supers"></span>
+                <input type="text" name="hivedata[brood]" id="brood_supers" class="form-control" placeholder="Brood Supers" aria-describedby="basic-addon1">
+              </div>
+                <div class="col-sm-10">
+                <span class="input-group-addon" id="hive-honey-supers"></span>
+                <input type="text" name="hivedata[honey]" id="honey_supers" class="form-control" placeholder="Honey Supers" aria-describedby="basic-addon1">
+              </div>
               </div>
                 <br>
                 <button type="button" class="btn btn-primary" id= "create_hive">Create Hive</button>
@@ -144,11 +163,11 @@
             <fieldset>
               <div class="input-group">
                 <span class="input-group-addon"  id="hive-name"></span>
-                <input type="text" name="hivedata[name]" id="new-name" class="form-control" placeholder="Hive Name" aria-describedby="basic-addon1">
+                <input type="text" name="hivedata[name]" id="new-name" class="form-control" placeholder="Hive Name" aria-describedby="basic-addon1"><br>
                 <span class="input-group-addon" id="type-of-queen"></span>
-                <input type="text" name="hivedata[queen]" id="new-queen" class="form-control" placeholder="Queen Type" aria-describedby="basic-addon1">
+                <input type="text" name="hivedata[queen]" id="new-queen" class="form-control" placeholder="Queen Type" aria-describedby="basic-addon1"><br>
                 <span class="input-group-addon" id="hive-location"></span>
-                <input type="text" name="hivedata[location]" id="new-location" class="form-control" placeholder="Hive Location" aria-describedby="basic-addon1">
+                <input type="text" name="hivedata[location]" id="new-location" class="form-control" placeholder="Hive Location" aria-describedby="basic-addon1"><br>
               </div>
                 <br>
                 <button type="button" class="btn btn-primary" id= "update_hive">Update Hive</button>
