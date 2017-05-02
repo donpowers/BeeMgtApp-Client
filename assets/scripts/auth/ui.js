@@ -84,7 +84,7 @@ const updateHive = function (event) {
   const data = event.target.id.split('-')
   store.hive_to_update = data[2]
   // Prepopulate Modal with current values
-
+  $('#noUpdatesFound').text('')
   populateUpdateHiveModal(data[2])
   $('#updateHiveModal').modal('show')
 }
@@ -193,7 +193,7 @@ const createHiveSuccess = () => {
   // update current list of hives
   onShowUserHives()
   // let user know hive was created
-  $('#hiveNameRequired').text('New Hive Created!')
+  $('#hiveNameRequired').text('New Hive Created! Create another or Close Window')
 }
 const createHiveFailure = (error) => {
   console.log('createHiveFailure')
@@ -202,6 +202,8 @@ const createHiveFailure = (error) => {
 const updateUserHiveSuccess = () => {
   console.log('updateHiveSuccess')
   // update current list of hives
+  createHiveSuccess
+  $('#noUpdatesFound').text('Hive Info Upated! Make another change or Close Window')
   onShowUserHives()
 }
 const updateUserHiveFailure = (error) => {
