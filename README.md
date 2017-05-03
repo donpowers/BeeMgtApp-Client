@@ -54,11 +54,11 @@ I know what type of queen this have has.
 where it is located
 4. Story: As a User, I want my know how many brood supers per hive, So that
 I can plan on replacing frames for my IPM.
-5.Story: As a User, I want my know how many honey supers per hive, So that
+5. Story: As a User, I want my know how many honey supers per hive, So that
 I can plan for extraction.
-6.Story: As a User, I want update my hive information, So that I can update
+6. Story: As a User, I want update my hive information, So that I can update
 changes that have occurred.
-7.Story: As a User, I want delete a hive, So that my hive list is updated
+7. Story: As a User, I want delete a hive, So that my hive list is updated
 
 ##Wireframe
 The initial wireframe mockup of a potential site design is located here
@@ -69,18 +69,18 @@ http://i.imgur.com/sGyoD9N.png
 
 ##Full Stack Project approach
 
-1.Identify what is needed for Minimum Viable Product or MVP. The goal is have
+1. Identify what is needed for Minimum Viable Product or MVP. The goal is have
 a product with the minimal features, so that users feedback can be received
 early, allowing adjustments to be made, with minimal work upfront.
-2.Determine what DB tables are required and relationships
-3.Build MVP UI for sign up/in/out/password
-4.Build out rails scaffold for new tables to support features.
-5.Implement routes and controllers along with curl scripts for support features.
-6.Add 'current_user' support.
-7.Build custom route(return on those hives for the user logged in)
-8.Build MVP UI for CRUD operations on hive.
-9.Deploy repo's to production sites.
-10.Refactor basic UI to improve appearance and error handling.
+2. Determine what DB tables are required and relationships
+3. Build MVP UI for sign up/in/out/password
+4. Build out rails scaffold for new tables to support features.
+5. Implement routes and controllers along with curl scripts for support features.
+6. Add 'current_user' support.
+7. Build custom route(return on those hives for the user logged in)
+8. Build MVP UI for CRUD operations on hive.
+9. Deploy repo's to production sites.
+10. Refactor basic UI to improve appearance and error handling.
 
 I followed my project approach as listed above.  It worked well. I had
 only a few challenges: current user support and heroku deploy. Working
