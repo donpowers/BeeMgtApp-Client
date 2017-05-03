@@ -47,12 +47,12 @@ Wireframe of front end. http://i.imgur.com/HLqrOfv.jpg
 
 The user: beekeeper who wants to manage their hives online.
 
-1.Story: As a User, I want to create a hive(name), So that I can manage it.
-2.Story: As a User, I want to add what type of queen the hive has, So that
+1. Story: As a User, I want to create a hive(name), So that I can manage it.
+2. Story: As a User, I want to add what type of queen the hive has, So that
 I know what type of queen this have has.
-3.Story: As a User, I want to add the location of my hive, So that I know
+3. Story: As a User, I want to add the location of my hive, So that I know
 where it is located
-4.Story: As a User, I want my know how many brood supers per hive, So that
+4. Story: As a User, I want my know how many brood supers per hive, So that
 I can plan on replacing frames for my IPM.
 5.Story: As a User, I want my know how many honey supers per hive, So that
 I can plan for extraction.
