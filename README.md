@@ -60,6 +60,7 @@ I can plan for extraction.
 changes that have occurred.
 7. Story: As a User, I want delete a hive, So that my hive list is updated
 
+
 ##Wireframes
 The initial wireframe mockup of a potential site design is located here
 http://i.imgur.com/Ml7FeJx.jpg
