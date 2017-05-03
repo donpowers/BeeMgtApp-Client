@@ -31,8 +31,10 @@ and the data must be "owned" by the user performing the change.
 8. Use a front-end Javascript app to communicate with your API (both read
 and write) and render data that it receives in the browser
 
+##App Description
+
 This app is intended to be used by someone who keeps bees.  A beekeeper needs
-to actively manager their hives.  During the peak season(April through Ocotber)
+to actively manage their hives.  During the peak season(April through Ocotber)
 the beekeeper regularly inspect their hives. During this inspection
 process the beekeeper will make observations and implement management practices
 that need to be recorded so the beekeeper can act upon them at a furture date.
