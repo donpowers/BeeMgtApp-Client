@@ -29,6 +29,7 @@ const signInSuccess = (data) => {
   $('#sign-up').hide()
   $('#sign-out').show()
   $('.add-hive-button').show()
+  $('#change-password').hide()
 }
 const onShowUserHives = function () {
   console.log('onShowUserHives called')
@@ -109,6 +110,7 @@ const signOutSuccess = () => {
   $('#userHives').empty()
   $('.add-hive-button').hide()
   $('#sign-up ').trigger('reset')
+  $('#change-password').hide()
   showUserLoggedlMessage('Welcome! Please Sign In or Sign Up.')
 }
 const signOutFailure = (error) => {
