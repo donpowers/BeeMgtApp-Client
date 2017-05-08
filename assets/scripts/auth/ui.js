@@ -120,6 +120,7 @@ const signOutFailure = (error) => {
 const changePasswordSuccess = () => {
   // Clear the form data entered
   console.log('Change Password success')
+  showModalMessage('Your password has been udpated.')
   $('#change-password').trigger('reset')
 }
 const changePasswordFailure = (error) => {
