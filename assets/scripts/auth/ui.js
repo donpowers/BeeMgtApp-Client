@@ -29,7 +29,7 @@ const signInSuccess = (data) => {
   $('#sign-up').hide()
   $('#sign-out').show()
   $('.add-hive-button').show()
-  $('#change-password').hide()
+  $('#change-password').show()
 }
 const onShowUserHives = function () {
   console.log('onShowUserHives called')
