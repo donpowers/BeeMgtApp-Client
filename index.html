@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Honey Bee Management</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container ">
+      <h1>Honey Bee Colony Management</h1>
+
+      <div class="who-is-login">
+        <span class="logged-in" id="currentUser">Welcome! Please Sign In or Sign Up.</span>
+      </div>
+      <br>
+
+      <div class="add-hive-button">
+        <input type="submit" id="add-hives-button" name="hive button" value="Create New Hive">
+      </div>
+      <br>
+      <form id="sign-out">
+        <fieldset>
+        <input type="submit" name="submit" value="Sign Off">
+        </fieldset>
+      </form>
+
+      <br>
+
+      <div id="userHives" class="userHives"> </div>
+      <br>
+      <form id="sign-up">
+      <fieldset>
+        <div class="input-group">
+          <span class="input-group-addon"  id="emailAddress"></span>
+          <input type="text" name="credentials[email]" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1">
+          <span class="input-group-addon" id="passWord"></span>
+          <input type="password" name="credentials[password]" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+          <span class="input-group-addon" id="basic-addon1"></span>
+          <input type="password" name="credentials[password_confirmation]" class="form-control" placeholder="Password Confirmation" aria-describedby="basic-addon1">
+        </div>
+          <input type="submit" name="submit" value="Sign up">
+      </fieldset>
+      <br>
+      </form>
+
+      <form id="sign-in">
+      <fieldset>
+      <div class="input-group">
+        <span class="input-group-addon"  id="emailAddress"></span>
+        <input type="text" name="credentials[email]" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1">
+        <span class="input-group-addon" id="passWord"></span>
+        <input type="password" name="credentials[password]" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+      </div>
+        <input type="submit" name="submit" value="Sign In">
+      </fieldset>
+      <br>
+      </form>
+
+      <form id="change-password">
+        <fieldset>
+          <div class="input-group">
+            <span class="input-group-addon"  id="old-password"></span>
+            <input type="password" name="passwords[old]" class="form-control" placeholder="Old Password" aria-describedby="basic-addon1">
+            <span class="input-group-addon" id="passWord"></span>
+            <input type="password" name="passwords[new]" class="form-control" placeholder="New Password" aria-describedby="basic-addon1">
+          </div>
+          <input type="submit" name="submit" value="Change Password">
+        </fieldset>
+        <br>
+      </form>
+      <br>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p id=infoModalText>Replace this text</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create Hive Modal -->
+    <div id="createHiveModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Create Hive</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id=infoModalText>Please Supply The Requested Data(Hive Name Required)</p>
+            <p id=hiveNameRequired></p>
+            <form id="create-hive">
+            <fieldset>
+              <div class="input-group">
+                <div class="col-sm-10">
+                  <span class="input-group-addon"  id="hive-name"></span>
+                  <input type="text" name="hivedata[name]" id="name" class="form-control" placeholder="Hive Name" aria-describedby="basic-addon1">
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="type-of-queen"></span>
+                  <input type="text" name="hivedata[queen]" id="queen" class="form-control" placeholder="Queen Type" aria-describedby="basic-addon1">
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="hive-location"></span>
+                  <input type="text" name="hivedata[location]" id="location" class="form-control" placeholder="Hive Location" aria-describedby="basic-addon1">
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="hive-brood-supers"></span>
+                  <input type="text" name="hivedata[brood]" id="brood_supers" class="form-control" placeholder="Brood Supers" aria-describedby="basic-addon1">
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="hive-honey-supers"></span>
+                  <input type="text" name="hivedata[honey]" id="honey_supers" class="form-control" placeholder="Honey Supers" aria-describedby="basic-addon1">
+                </div>
+              </div>
+                <br>
+                <button type="button" class="btn btn-primary" id= "create_hive">Create Hive</button>
+            </fieldset>
+            <br>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Hive Modal -->
+    <div id="updateHiveModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Hive</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id=infoModalUpdateText>Update Hive Information</p>
+            <p id=noUpdatesFound></p>
+            <form id="update-hive">
+            <fieldset>
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <span class="input-group-addon"  id="new-name"></span>
+                  <input type="text" name="hivedata[name]" id="new_name" class="form-control" placeholder="Hive Name" aria-describedby="basic-addon1"><br>
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="new-queen"></span>
+                  <input type="text" name="hivedata[queen]" id="new_queen" class="form-control" placeholder="Queen Type" aria-describedby="basic-addon1"><br>
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="new-location"></span>
+                  <input type="text" name="hivedata[location]" id="new_location" class="form-control" placeholder="Hive Location" aria-describedby="basic-addon1"><br>
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="new-brood-supers"></span>
+                  <input type="text" name="hivedata[brood]" id="new_brood_supers" class="form-control" placeholder="Brood Supers" aria-describedby="basic-addon1"><br>
+                </div>
+                <div class="col-sm-10">
+                  <span class="input-group-addon" id="new-honey-supers"></span>
+                  <input type="text" name="hivedata[honey]" id="new_honey_supers" class="form-control" placeholder="Honey Supers" aria-describedby="basic-addon1"><br>
+                </div>
+              </div>
+              <br>
+              <button type="button" class="btn btn-primary" id= "update_hive">Update Hive</button>
+            </fieldset>
+            <br>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close"
+                       data-dismiss="modal">
+                           <span aria-hidden="true">&times;</span>
+                           <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Modal title
+                    </h4>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+
+                    <form class="form-horizontal" role="form">
+                      <div class="form-group">
+                        <label  class="col-sm-2 control-label"
+                                  for="location">Location</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"
+                            id="location1" placeholder="Location"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label"
+                              for="queen" >Queen Type</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"
+                                id="queen1" placeholder="Queen Type"/>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                                Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+   </body>
+</html>
